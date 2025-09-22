@@ -7,22 +7,14 @@ const AvailablePlayers = ({ playerPromise }) => {
     const playerData = use(playerPromise);
     console.log(playerData);
 
-    // "player_image": "https://i.ibb.co.com/Jhg3KCY/Tamim-Iqbal.png",
-    // "player_name": "Tamim Iqbal",
-    // "player_country": "Bangladesh",
-    // "playing_role": "Batsman",
-    // "rating": 8.5,
-    // "batting_style": "Left-hand Bat",
-    // "bowling_style": "N/A",
-    // "price": "$150,000"
-
     return (
-        <div className='max-w-[1200px] mx-auto'>
+        <div className='max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
 
             {
-                playerData.map(player => <div className="card bg-base-100 w-96 shadow-sm p-4">
+                playerData.map(player => <div className="card bg-base-100 shadow-sm p-4">
                     <figure>
                         <img
+                            className='w-full h-[300px] object-cover'
                             src={player.player_image}
                             alt={player.player_name} />
                     </figure>
