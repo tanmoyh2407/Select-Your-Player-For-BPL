@@ -1,54 +1,16 @@
 import React, { use } from 'react';
-import userImg from '../../assets/user-1.png'
-import flagImg from '../../assets/report-1.png'
+import PlayerCard from '../PlayerCard/PlayerCard';
 
-const AvailablePlayers = ({ playerPromise }) => {
+
+const AvailablePlayers = ({ playerPromise, setAvailableBalance, availableBalance, purchasedPlayer, setPurchasedPlayer }) => {
 
     const playerData = use(playerPromise);
-    console.log(playerData);
 
     return (
         <div className='max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
 
             {
-                playerData.map(player => <div className="card bg-base-100 shadow-sm p-4">
-                    <figure>
-                        <img
-                            className='w-full h-[300px] object-cover'
-                            src={player.player_image}
-                            alt={player.player_name} />
-                    </figure>
-                    <div className="mt-3">
-                        <div className='flex'>
-                            <img src={userImg} alt="" />
-                            <h2 className="card-title ml-2">{player.player_name}</h2>
-                        </div>
-
-                        <div className='mt-4 flex justify-between items-center border-b-1 border-gray-200 pb-2'>
-                            <div className='flex gap-2 items-center'>
-                                <img src={flagImg} alt="" />
-                                <span>{player.player_country}</span>
-                            </div>
-                            <div>
-                                <button className='btn'>{player.playing_role}</button>
-                            </div>
-                        </div>
-
-                        <div className='flex justify-between font-bold mt-3'>
-                            <span>Rating</span>
-                            <span>{player.rating}</span>
-                        </div>
-                        <div className='flex justify-between mt-4'>
-                            <span className='font-bold'>{player.batting_style}</span>
-                            <span className='font-light'>{player.bowling_style}</span>
-                        </div>
-
-                        <div className="card-actions flex items-center justify-between mt-4">
-                            <p className='font-bold'>Price: $<span>{player.price}</span></p>
-                            <button className="btn">Choose Player</button>
-                        </div>
-                    </div>
-                </div>)
+                playerData.map(player => <PlayerCard setPurchasedPlayer={setPurchasedPlayer} purchasedPlayer={purchasedPlayer} availableBalance={availableBalance} setAvailableBalance={setAvailableBalance} player={player}></PlayerCard>)
             }
         </div>
     );
